@@ -74,8 +74,7 @@ st.sidebar.markdown("###")
 # Judul aplikasi
 st.title("📚 Pencarian Laporan PKL")
 
-# Menggunakan data langsung tanpa file eksternal
-data_perpustakaan = data_json  # Data yang disimpan di dalam aplikasi (bisa diganti dengan file JSON jika dihosting)
+nama_file = 'datajsonpkl.json'  # Gunakan nama file langsung
 
 # Jika data berhasil dibaca
 if data_perpustakaan:
