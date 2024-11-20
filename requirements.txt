@@ -4,3 +4,4 @@ qrcode
 BytesIO
 PIL
 os
+json
