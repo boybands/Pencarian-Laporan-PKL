@@ -1,11 +1,35 @@
 import streamlit as st
 import qrcode
-import json
 import pandas as pd
 from PIL import Image
 from io import BytesIO
 import os
 
+data_json = [
+    {
+      "nomor_urut": "1",
+      "arsip_laporan_pkl": "A001",
+      "tahun_pelaksanaan": 2024,
+      "nim": "123456789",
+      "nama_mahasiswa": "John Doe",
+      "judul_laporan_pkl": "Letak Buku Laporan di Perpustakaan",
+      "nama_dosen_pembimbing": "Dr. Jane Smith",
+      "nama_tempat_pelaksanaan": "Perpustakaan Universitas",
+      "kabupaten_kota": "Jakarta"
+    },
+    {
+      "nomor_urut": "2",
+      "arsip_laporan_pkl": "A002",
+      "tahun_pelaksanaan": 2024,
+      "nim": "987654321",
+      "nama_mahasiswa": "Alice Johnson",
+      "judul_laporan_pkl": "Pengelolaan Koleksi Buku di Perpustakaan",
+      "nama_dosen_pembimbing": "Prof. Mark Lee",
+      "nama_tempat_pelaksanaan": "Perpustakaan Kota Bandung",
+      "kabupaten_kota": "Bandung"
+    }
+  ]
+  
 # Fungsi untuk membuat QR code
 def buat_qr_code(url):
     qr = qrcode.QRCode(
