@@ -3,8 +3,9 @@ import qrcode
 import pandas as pd
 from PIL import Image
 from io import BytesIO
-import os
+import json
 
+# Data JSON contoh (sebaiknya disimpan dalam file JSON di repo GitHub Anda)
 data_json = [
     {
       "nomor_urut": "1",
@@ -28,8 +29,8 @@ data_json = [
       "nama_tempat_pelaksanaan": "Perpustakaan Kota Bandung",
       "kabupaten_kota": "Bandung"
     }
-  ]
-  
+]
+
 # Fungsi untuk membuat QR code
 def buat_qr_code(url):
     qr = qrcode.QRCode(
@@ -45,20 +46,6 @@ def buat_qr_code(url):
     img.save(buffer, format="PNG")
     buffer.seek(0)
     return buffer
-
-# Fungsi untuk membaca data dari file JSON
-def baca_data_dari_file(nama_file):
-    if os.path.exists(nama_file):
-        with open(nama_file, 'r', encoding='utf-8') as file:
-            try:
-                data = json.load(file)
-                return data
-            except json.JSONDecodeError:
-                st.error(f"Format data dalam file '{nama_file}' tidak valid.")
-                return None
-    else:
-        st.error(f"File '{nama_file}' tidak ditemukan.")
-        return None
 
 # Fungsi untuk mencari laporan PKL berdasarkan judul
 def cari_laporan(judul_dicari, data):
@@ -82,15 +69,13 @@ st.sidebar.image(qr_image, caption="Scan QR untuk Akses Aplikasi di HP")
 # Sidebar
 st.sidebar.header("Pencarian Laporan PKL")
 st.sidebar.markdown("""Gunakan aplikasi ini untuk mencari laporan PKL yang ada. Pilih judul laporan pada kolom di bawah dan tekan tombol 'Cari'.""")
+st.sidebar.markdown("###")
 
 # Judul aplikasi
 st.title("📚 Pencarian Laporan PKL")
 
-# Nama file JSON yang ingin dibaca
-nama_file = 'C://Users//Lenovo//Documents//Kuliah//Semester 2//pkl seminar 3//datajsonpkl.json'
-
-# Membaca data dari file JSON
-data_perpustakaan = baca_data_dari_file(nama_file)
+# Menggunakan data langsung tanpa file eksternal
+data_perpustakaan = data_json  # Data yang disimpan di dalam aplikasi (bisa diganti dengan file JSON jika dihosting)
 
 # Jika data berhasil dibaca
 if data_perpustakaan:
