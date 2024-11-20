@@ -89,7 +89,7 @@ if data_perpustakaan:
                     'nama_tempat_pelaksanaan': 'Nama Tempat Pelaksanaan',
                     'kabupaten_kota': 'Kabupaten/Kota'
                 })
-                df = df[['No', 'Nomor Urut', 'Arsip Laporan PKL', 'Tahun Pelaksanaan', 'NIM',
+                df = df[['Nomor Urut', 'Arsip Laporan PKL', 'Tahun Pelaksanaan', 'NIM',
                          'Nama Mahasiswa', 'Judul Laporan PKL', 'Nama Dosen Pembimbing',
                          'Nama Tempat Pelaksanaan', 'Kabupaten/Kota']]
                 st.subheader(f"Detail Laporan PKL '{judul_yang_dicari}':")
