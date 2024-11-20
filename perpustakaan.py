@@ -59,7 +59,7 @@ def cari_laporan(judul_dicari, data):
 st.set_page_config(page_title="Pencarian Laporan PKL", layout="wide")
 
 # Menampilkan QR code untuk aplikasi di perangkat mobile
-url_aplikasi = "http://alamat-anda.com"  # Ganti dengan URL aplikasi yang dihosting
+url_aplikasi = "https://pencarian-laporan-pkl.streamlit.app/"  # Ganti dengan URL aplikasi yang dihosting
 qr_code = buat_qr_code(url_aplikasi)
 qr_image = Image.open(qr_code)
 
