@@ -1,7 +1,4 @@
-streamlit 
-Pandas
+streamlit
 qrcode
-BytesIO
-PIL
-os
-json
+pandas
+pillow
