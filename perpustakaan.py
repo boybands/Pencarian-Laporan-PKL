@@ -1,25 +1,6 @@
 import streamlit as st
-import qrcode
 import pandas as pd
-from PIL import Image
-from io import BytesIO
 import json
-
-# Fungsi untuk membuat QR code
-def buat_qr_code(url):
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=10,
-        border=4,
-    )
-    qr.add_data(url)
-    qr.make(fit=True)
-    img = qr.make_image(fill='black', back_color='white')
-    buffer = BytesIO()
-    img.save(buffer, format="PNG")
-    buffer.seek(0)
-    return buffer
 
 # Fungsi untuk membaca data dari file JSON
 def baca_data_dari_file(nama_file):
@@ -42,13 +23,7 @@ def cari_laporan(judul_dicari, data):
 # Set konfigurasi halaman Streamlit
 st.set_page_config(page_title="Pencarian Laporan PKL", layout="wide")
 
-# Tampilkan QR code untuk aplikasi di perangkat mobile
-url_aplikasi = "https://pencarian-laporan-pkl.streamlit.app/"  # Ganti dengan URL aplikasi Anda
-qr_code = buat_qr_code(url_aplikasi)
-qr_image = Image.open(qr_code)
-
 # Sidebar
-st.sidebar.image(qr_image, caption="Scan QR untuk Akses Aplikasi di HP")
 st.sidebar.header("Pencarian Laporan PKL")
 st.sidebar.markdown("Gunakan aplikasi ini untuk mencari laporan PKL berdasarkan judul.")
 
