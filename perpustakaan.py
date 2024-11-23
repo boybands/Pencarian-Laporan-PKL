@@ -1,25 +1,6 @@
 import streamlit as st
-import qrcode
 import pandas as pd
-from PIL import Image
-from io import BytesIO
 import mysql.connector
-
-# Fungsi untuk membuat QR code
-def buat_qr_code(url):
-    qr = qrcode.QRCode(
-        version=1,
-        error_correction=qrcode.constants.ERROR_CORRECT_L,
-        box_size=10,
-        border=4,
-    )
-    qr.add_data(url)
-    qr.make(fit=True)
-    img = qr.make_image(fill='black', back_color='white')
-    buffer = BytesIO()
-    img.save(buffer, format="PNG")
-    buffer.seek(0)
-    return buffer
 
 # Fungsi untuk membaca data dari database MySQL berdasarkan nama tabel
 def baca_data_dari_mysql(nama_tabel):
@@ -54,14 +35,6 @@ def baca_data_dari_mysql(nama_tabel):
 # Set page config sebagai Streamlit command pertama
 st.set_page_config(page_title="Pencarian Laporan PKL", layout="wide")
 
-# Menampilkan QR code untuk aplikasi di perangkat mobile
-url_aplikasi = "https://pencarian-laporan-pkl.streamlit.app/"  # Ganti dengan URL aplikasi yang dihosting
-qr_code = buat_qr_code(url_aplikasi)
-qr_image = Image.open(qr_code)
-
-# Menampilkan QR code di sidebar
-st.sidebar.image(qr_image, caption="Scan QR untuk Akses Aplikasi di HP")
-
 # Sidebar
 st.sidebar.header("Pencarian Laporan PKL")
 st.sidebar.markdown("""Gunakan aplikasi ini untuk mencari laporan PKL yang ada. Pilih tabel di bawah untuk melihat data.""")
@@ -85,4 +58,3 @@ if st.button("Cari"):
         st.write(df.to_html(index=False), unsafe_allow_html=True)  # Tampilkan tabel tanpa indeks
     else:
         st.warning(f"Tidak ada data ditemukan di tabel '{nama_tabel}'.")
-    
